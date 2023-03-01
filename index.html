@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html {
+            background-color: rgb(21, 57, 66);
+        }
+        .one {
+            width: 600px;
+            height: 600px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+        .two {
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(90deg, #481fbb 0%, #18680a 100%);
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            text-align: center;
+        }
+
+        .item {
+            width: 10px;
+            height: 10px;
+            background-color: red;
+            position: absolute;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .three {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            background-color: black;
+            border-radius: 50%;
+        }
+
+        .max {
+            width: 3px;
+            height: 200px;
+            background-color: red;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 150px;
+            margin: auto;
+            transform-origin: 50% 175px;
+            z-index: 3;
+        }
+
+        .span1 {
+            display: inline-block;
+            font-size: 20px;
+            color: #999;
+            position: relative;
+            top: 290px;
+        }
+
+        .wu {
+            width: 200px;
+            height: 50px;
+            position: relative;
+            top: 300px;
+            left: 150px;
+            display: flex;
+        }
+
+        .wu p {
+            width: 50px;
+            height: 50px;
+            background-color: rgb(34, 41, 39);
+            margin: 0 9px;
+            text-align: center;
+            color: white;
+            font-size: 27px;
+            line-height: 50px;
+        }
+        .mm {
+            width: 5px;
+            height: 180px;
+            background-color:rebeccapurple;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 150px;
+            margin: auto;
+            transform-origin: 50% 165px;
+            z-index: 2;
+        }
+        .min {
+            width: 5px;
+            height: 150px;
+            background-color:rgb(23, 161, 35);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 100px;
+            margin: auto;
+            transform-origin: 50% 125px;
+            z-index: 1;
+            animation: req 43200s linear infinite;
+        }
+        @keyframes req {
+            0%{ 
+                transform: rotate(0deg);
+            }            
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        .er {
+            font-size: 18;
+            position: absolute;
+            top: 30px;
+            left: 240px;
+        }
+        .san {
+            font-size: 18;
+            position: absolute;
+            top: 242px;
+            left: 455px;
+        }
+        .jiu {
+            font-size: 18;
+            position: absolute;
+            top: 240px;
+            left: 40px;
+        }
+        .liu {
+            font-size: 18;
+            position: absolute;
+            top: 449px;
+            left: 245px;
+        }
+        .five{
+            width: 20px;
+            height: 4px;
+            border-radius: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="one">
+        <div class="two">
+            <span class="er">12</span>
+            <span class="san">3</span>
+            <span class="liu">6</span>
+            <span class="jiu">9</span>
+            <!-- 分针 -->
+            <p class="max"></p>
+            <p class="mm"></p>
+            <p class="min"></p>
+            <!--中心原点  -->
+            <div class="three"></div>
+            <div class="duo">
+                <!-- 时间 -->
+                <span class="span1"></span>
+                <div class="wu">
+                    <p class="p1"></p>
+                    <p class="p2"></p>
+                    <p class="p3"></p>
+                </div>  
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    var max = document.querySelector(".max");
+    var mm = document.querySelector(".mm");
+    var min = document.querySelector(".min");
+    var span1 = document.querySelector(".span1");
+    var p1 = document.querySelector(".p1");
+    var p2 = document.querySelector(".p2");
+    var p3 = document.querySelector(".p3");
+    // 时间
+    function date4() {
+        var date3 = new Date();
+        var a = date3.getFullYear();
+        var b = date3.getMonth() + 1;
+        var c = date3.getDate();
+        return a + '年' + b + '月' + c + '日';
+    }
+    span1.textContent = date4(); //年月日
+    var h = 0; //秒
+    var j = 0; //分
+    var k = 0; //时
+    var date3 = setInterval(aaa, 1000)
+    aaa()
+    function aaa() {
+        var date33 = new Date();
+        var f = date33.getSeconds();
+        p3.textContent = f;
+        max.style.transform = `rotate(${f * 6}deg)`;
+        h = f;
+        //分
+        function date2() {
+            var date22 = new Date();
+            var e = date22.getMinutes();
+            j = e;
+            return e;
+        }
+        p2.textContent = date2();
+        mm.style.transform = `rotate(${j * 6 + h * 0.1}deg)`;
+        //时
+        function date1() {
+            var date11 = new Date();
+            var d = date11.getHours();
+            k = d;
+            return d;
+        }
+        p1.textContent = date1();
+        min.style.animationDelay = - (k*60*60 + j*60 + h) + "s";
+    }
+    // 雏
+    let count = 60;
+    let x0 = window.innerWidth / 2;
+    let y0 = window.innerHeight / 2;
+    let r = x0 > y0 ? y0 / 2 : x0 / 2;
+    var arr = [];
+    for (var i = 0; i < count; i++) {
+        var div = document.createElement("div");
+        document.body.appendChild(div)
+        div.classList.add("item")
+        var angle = 2 * Math.PI / count;
+        div.style.left = x0 + r * Math.cos(angle * i) + "px";
+        div.style.top = y0 + r * Math.sin(angle * i) + "px";
+        div.style.backgroundColor = `hsl(${360 * i / count},100%,50%)`;
+        div.angle = angle * i;
+        arr.push(div);
+        if (i % 5 == 0) {
+            div.classList.add("five")
+            div.style.transform = `translate(-50%, -50%) rotate(${6*i}deg)`;
+        }
+    }
+
+    window.onresize = function(){
+        x0 = window.innerWidth / 2;
+        y0 = window.innerHeight / 2;
+        r = x0 > y0 ? y0 / 2 : x0 / 2;
+        arr.forEach(function(item){
+            item.style.top = y0 + r * Math.sin(item.angle) + "px";
+            item.style.left = x0 + r * Math.cos(item.angle) + "px";
+        })
+    }
+</script>
+
+</html>
